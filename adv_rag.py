@@ -1,6 +1,6 @@
-# -----------------------------
+
 # Groq RAG Chatbot with FAISS + VectorStoreRetrieverMemory
-# -----------------------------
+
 
 import os
 import time
@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import List, Any
 from dotenv import load_dotenv
 
-# LangChain & Community Imports (v1.0.2+)
+
 from langchain_community.document_loaders import (
     PyPDFLoader, TextLoader, CSVLoader, Docx2txtLoader, JSONLoader
 )
@@ -25,16 +25,16 @@ from langchain_core.prompts import PromptTemplate
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_classic.chains import create_retrieval_chain
 
-# -----------------------------
+
 # Load Environment Variables
-# -----------------------------
+
 load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# -----------------------------
-# 📂 Load Documents
-# -----------------------------
+
+#  Load Documents
+
 def load_all_documents(data: str) -> List[Any]:
     data_path = Path(data).resolve()
     documents = []
@@ -62,15 +62,15 @@ def load_all_documents(data: str) -> List[Any]:
     return documents
 
 
-# -----------------------------
+
 #  Streamlit Setup
-# -----------------------------
+
 st.set_page_config(page_title="Groq RAG Chatbot", layout="wide")
 st.title(" RAG Chatbot with Groq + FAISS Memory (Persistent)")
 
-# -----------------------------
+
 # Initialize Session State
-# -----------------------------
+
 if "initialized" not in st.session_state:
     st.session_state.initialized = True
 
@@ -147,9 +147,9 @@ Answer:
 
     st.success(" Chatbot initialized successfully!")
 
-# -----------------------------
+
 #  Helper Function: Filter Messages
-# -----------------------------
+
 def is_relevant_message(text: str) -> bool:
     irrelevant_phrases = ["hi", "hello", "thanks", "bye", "okay"]
     return len(text.strip()) > 5 and not any(p in text.lower() for p in irrelevant_phrases)

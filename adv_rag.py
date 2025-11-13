@@ -66,7 +66,7 @@ def load_all_documents(data: str) -> List[Any]:
 #  Streamlit Setup
 # -----------------------------
 st.set_page_config(page_title="Groq RAG Chatbot", layout="wide")
-st.title("💬 RAG Chatbot with Groq + FAISS Memory (Persistent)")
+st.title(" RAG Chatbot with Groq + FAISS Memory (Persistent)")
 
 # -----------------------------
 # Initialize Session State
@@ -84,7 +84,7 @@ if "initialized" not in st.session_state:
             st.session_state.embeddings,
             allow_dangerous_deserialization=True,
         )
-        print("📦 Loaded existing document FAISS index.")
+        print(" Loaded existing document FAISS index.")
     else:
         with st.spinner(" Loading and indexing documents..."):
             docs = load_all_documents("./data")
@@ -101,7 +101,7 @@ if "initialized" not in st.session_state:
             st.session_state.embeddings,
             allow_dangerous_deserialization=True,
         )
-        print("🧠 Loaded existing memory FAISS index.")
+        print(" Loaded existing memory FAISS index.")
     else:
         st.session_state.memory_store = FAISS.from_texts([""], st.session_state.embeddings)
         st.session_state.memory_store.save_local("memory_index")
